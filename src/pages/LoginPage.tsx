@@ -1,23 +1,36 @@
+// src/pages/LoginPage.tsx
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/auth/firebase";
 import { useAuth } from "@/context/AuthContext";
+import Logo from "@/assets/logo.svg";
 import { useNavigate } from "react-router-dom";
+// import { useTheme } from "next-themes";
+import "@/styles/LoginPage.css";
 
 export const LoginPage = () => {
   const { loginWithGoogle } = useAuth();
+  const { t, i18n } = useTranslation();
+  // const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  if (error) {
+    console.error("Login error:", error);
+  }
 
   const handleGoogleLogin = async () => {
+    setLoading(true);
     try {
       await loginWithGoogle();
-      navigate("/");
     } catch (err) {
-      setError("Google login failed");
+      console.error("Google login failed", err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -32,50 +45,59 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="bg-white shadow-xl p-8 rounded-lg w-full max-w-md space-y-6">
-        <h2 className="text-xl font-semibold text-center">
-          Login to Digital Karyalay
-        </h2>
+    <div className="login-container">
+      <div className="login-card">
+        <img src={Logo} alt="Logo" className="login-logo" />
+        <h2 className="login-title">{t("login.title")}</h2>
 
-        {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+        <div className="language-switch">
+          <button onClick={() => i18n.changeLanguage("en")}>EN</button>
+          <button onClick={() => i18n.changeLanguage("mr")}>MR</button>
+        </div>
 
-        <form onSubmit={handleEmailLogin} className="space-y-4">
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full px-4 py-2 border rounded"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full px-4 py-2 border rounded"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button
-            type="submit"
-            className="w-full bg-primary text-white py-2 rounded"
-          >
-            Login with Email
-          </button>
-        </form>
-
-        <div className="text-center text-sm text-gray-500">or</div>
+        {error && <p className="login-error">{error}</p>}
 
         <button
           onClick={handleGoogleLogin}
-          className="w-full bg-red-500 text-white py-2 rounded"
+          className={`login-button google-button ${loading ? "disabled" : ""}`}
+          disabled={loading}
         >
-          Login with Google
+          {loading ? (
+            <div className="spinner" />
+          ) : (
+            <>
+              <img
+                src="https://www.svgrepo.com/show/475656/google-color.svg"
+                alt="Google"
+              />
+              {t("login.google")}
+            </>
+          )}
         </button>
+
+        <form onSubmit={handleEmailLogin} className="login-form">
+          <input
+            type="email"
+            value={email}
+            placeholder={t("login.email")}
+            required
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            value={password}
+            placeholder={t("login.password")}
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button type="submit" className="login-button">
+            {t("login.submit")}
+          </button>
+        </form>
       </div>
     </div>
   );
 };
 
+// Export default LoginPage
 export default LoginPage;

@@ -4,8 +4,9 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
+import { ThemeProvider } from 'next-themes';
 
-// Register Service Worker for PWA functionality
+// Register Service Worker for PWA
 import { registerSW } from 'virtual:pwa-register';
 
 registerSW({
@@ -17,9 +18,11 @@ registerSW({
   },
 });
 
-// Mount the React App
+// Mount the React app
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <ThemeProvider attribute="class" defaultTheme="system">
+      <App />
+    </ThemeProvider>
   </StrictMode>
 );

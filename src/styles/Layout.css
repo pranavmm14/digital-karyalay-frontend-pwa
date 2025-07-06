@@ -1,0 +1,15 @@
+/* Light/Dark background consistency */
+.app-container.light {
+  background-color: #f8f9fa;
+  color: #111;
+}
+
+.app-container.dark {
+  background-color: #1a1a1a;
+  color: #f8f8f8;
+}
+
+.app-content {
+  padding: 1rem;
+  min-height: calc(100vh - 60px); /* subtract navbar height */
+}
