@@ -7,7 +7,7 @@ import { useAuth } from "@/context/AuthContext";
 import Logo from "@/assets/logo.svg";
 import { useNavigate } from "react-router-dom";
 // import { useTheme } from "next-themes";
-import "@/styles/LoginPage.css";
+import "@/styles/loginPage.css";
 
 export const LoginPage = () => {
   const { loginWithGoogle } = useAuth();
