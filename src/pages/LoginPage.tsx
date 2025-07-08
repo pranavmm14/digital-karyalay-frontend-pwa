@@ -27,6 +27,8 @@ export const LoginPage = () => {
   }
 
   const handleGoogleLogin = async () => {
+    // setError("Google sign-in is temporarily unavailable. Please use email login.");
+    // return;
     setLoading(true);
     try {
       await loginWithGoogle();
