@@ -1,4 +1,26 @@
 {
-  "create_meeting": "Create Meeting",
-  "submit": "Submit"
+  "login": {
+    "title": "Login to Digital Karyalay",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Login with Email",
+    "google": "Login with Google"
+  },
+  "navbar": {
+    "appTitle": "Digital Karyalay",
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred. Please try again."
+  },
+  "theme": {
+    "light": "Light Mode",
+    "dark": "Dark Mode",
+    "system": "System Default"
+  }
 }

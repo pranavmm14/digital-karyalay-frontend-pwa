@@ -1,6 +1,13 @@
+// src/pages/Dashboard.tsx
+import { Link } from "react-router-dom";
+
 const Dashboard = () => {
+  console.log("Dashboard component is rendering"); // Debug log
+
   return (
-    <div className="p-6 space-y-4">
+    <div className="p-6 space-y-4 pt-20">
+      {" "}
+      {/* Added pt-20 for fixed navbar */}
       <h1 className="text-2xl font-bold">Digital Karyalay</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="bg-white p-4 rounded-xl shadow">
@@ -13,14 +20,26 @@ const Dashboard = () => {
         <div className="bg-white p-4 rounded-xl shadow">
           <h2 className="text-lg font-semibold">Quick Actions</h2>
           <ul className="mt-2 space-y-1 text-sm text-blue-600">
-            <li><a href="/meetings/new" className="hover:underline">➕ Create New Meeting</a></li>
-            <li><a href="/attendance/123/attendance" className="hover:underline">📋 Mark Attendance</a></li>
-            <li><a href="/reports" className="hover:underline">🧾 Generate Reports</a></li>
+            <li>
+              <Link to="/meetings/new" className="hover:underline">
+                ➕ Create New Meeting
+              </Link>
+            </li>
+            <li>
+              <Link to="/meetings/123/attendance" className="hover:underline">
+                📋 Mark Attendance
+              </Link>
+            </li>
+            <li>
+              <Link to="/reports" className="hover:underline">
+                🧾 Generate Reports
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Dashboard;

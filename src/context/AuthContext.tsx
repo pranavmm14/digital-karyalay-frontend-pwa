@@ -1,3 +1,4 @@
+// src/context/AuthContext.tsx
 import type { ReactNode } from 'react'
 import { createContext, useContext, useState, useEffect } from 'react'
 import {
@@ -33,6 +34,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      // console.log("Auth state changed:", firebaseUser ? "User logged in" : "User logged out") // Debug log
+      
       if (firebaseUser) {
         const newUser: User = {
           name: firebaseUser.displayName || '',
@@ -40,6 +43,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           photoURL: firebaseUser.photoURL || '',
           uid: firebaseUser.uid,
         }
+        // console.log("Setting user:", newUser) // Debug log
         setUser(newUser)
         localStorage.setItem('uid', newUser.uid)
       } else {
@@ -53,11 +57,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, [])
 
   const loginWithGoogle = async () => {
+    // console.log("Attempting Google login") // Debug log
     await signInWithPopup(auth, provider)
     // user is handled by onAuthStateChanged
   }
 
   const loginWithEmail = async (email: string, password: string) => {
+    console.log("Attempting email login") // Debug log
     await signInWithEmailAndPassword(auth, email, password)
     // user is handled by onAuthStateChanged
   }
@@ -68,10 +74,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }
 
   const logout = async () => {
+    // console.log("Logging out") // Debug log
     await signOut(auth)
     setUser(null)
     localStorage.removeItem('uid')
   }
+
+  // console.log("AuthProvider rendering with user:", user, "loading:", loading) // Debug log
 
   return (
     <AuthContext.Provider
