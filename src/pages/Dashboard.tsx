@@ -35,6 +35,11 @@ const Dashboard = () => {
                 🧾 Generate Reports
               </Link>
             </li>
+            <li>
+              <Link to="/PravasChakra" className="hover:underline">
+                🌐 Pravas Chakra
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

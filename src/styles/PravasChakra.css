@@ -1,0 +1,273 @@
+/* PravasChakra.css - Component Specific Styles for PravasChakra */
+/* Assumes global variables are defined in Layout.css */
+
+/* Pravas Chakra Container */
+.pravas-container {
+    /* min-height calculation is here to ensure content takes up remaining viewport space
+       after the navbar. Adjust '56px' if your navbar's height is different. */
+    min-height: calc(100vh - 56px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    width: 100%; /* Ensure it fills available width */
+}
+
+/* Main Content Card */
+.pravas-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+    color: var(--text-color);
+}
+
+/* Header and Controls */
+.header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-controls h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+    flex-grow: 1;
+}
+
+.date-selectors {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.date-selectors label {
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.date-selectors select {
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--select-border);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    background-color: var(--select-bg);
+    color: var(--select-text);
+    cursor: pointer;
+    appearance: none;
+    /* Base64 SVG for the dropdown arrow, adjusted to use currentColor */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.2-6.4H18.8c-4.8%200-9.3%201.8-13.2%206.4s-6.4%209.3-6.4%2013.2c0%204.8%201.8%209.3%206.4%2013.2L132.8%20251c4.4%204.4%2010.6%207%2017.6%207s13.2-2.6%2017.6-7l115.2-115.2c4.8-4.8%206.4-10.6%206.4-17.6s-1.6-12.8-6.4-17.6z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 0.7em top 50%;
+    background-size: 0.65em auto, 100%;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.date-selectors select:focus {
+    border-color: var(--accent-orange); /* Uses accent color on focus */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 159, 67, 0.2); /* Soft shadow on focus */
+}
+
+/* Google Sheets Button */
+.sheets-link {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none; /* Button usually doesn't have a border */
+}
+
+.sheets-link:hover {
+    background-color: #e68e3c; /* Slightly darker orange on hover */
+    transform: translateY(-1px); /* Slight lift effect */
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sheets-link:active {
+    transform: translateY(0); /* Return to original position on click */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Styling */
+.pravas-table-wrapper {
+    overflow-x: auto; /* Allows horizontal scrolling for large tables */
+    width: 100%;
+    border-radius: 8px;
+    overflow-y: hidden; /* Prevent vertical scrollbar inside wrapper */
+    border: 1px solid var(--border-color); /* Table wrapper border */
+}
+
+.pravas-table {
+    min-width: 600px; /* Ensures table is at least this wide before collapsing */
+    width: 100%;
+    border-collapse: collapse; /* Collapses table borders */
+    background-color: var(--table-row-bg); /* Default row background */
+    color: var(--text-color);
+}
+
+.pravas-table thead {
+    background-color: var(--header-bg);
+    color: var(--header-text);
+}
+
+.pravas-table th,
+.pravas-table td {
+    border: 1px solid var(--border-color); /* Cell borders */
+    padding: 0.8rem 1rem;
+    text-align: left;
+    white-space: nowrap; /* Prevent text wrapping in cells */
+    color: var(--text-color);
+}
+
+.pravas-table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+}
+
+/* Specific row backgrounds for striping and hover effects */
+.pravas-table tbody tr {
+    background-color: var(--table-row-bg);
+    transition: background-color 0.3s ease;
+}
+
+.pravas-table tbody tr:nth-child(even) {
+    background-color: var(--table-stripe-bg); /* Striped rows */
+}
+
+.pravas-table tbody tr:hover {
+    background-color: var(--table-hover-bg); /* Hover effect */
+}
+
+/* Center last two columns for values */
+.pravas-table tbody td:last-child,
+.pravas-table tbody td:nth-last-child(2) {
+    text-align: center;
+}
+
+/* Style for values inside table cells */
+.pravas-table tbody .pravas-value {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    background-color: var(--pravas-value-bg);
+    color: var(--pravas-value-text);
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Messages (Loading, Error, No Data) */
+.message-box {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    color: var(--text-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+    border: 1px solid var(--border-color);
+    width: 100%;
+    max-width: 600px;
+}
+
+.message-box.error {
+    background-color: var(--error-bg);
+    color: var(--error-text);
+    border: 1px solid #fca5a5; /* Specific error border color */
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .pravas-container {
+        padding: 1rem;
+    }
+
+    .pravas-card {
+        padding: 1rem;
+        border-radius: 10px;
+    }
+
+    .header-controls {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+    }
+
+    .header-controls h2 {
+        font-size: 1.5rem;
+    }
+
+    .date-selectors {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .date-selectors label {
+        flex-basis: 100%;
+        text-align: left;
+        margin-bottom: 0.2rem;
+    }
+
+    .date-selectors select {
+        width: calc(50% - 0.5rem);
+    }
+
+    .sheets-link {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .pravas-table th,
+    .pravas-table td {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .pravas-table tbody .pravas-value {
+        padding: 0.2rem 0.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .date-selectors {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .date-selectors select {
+        width: 100%;
+    }
+}
