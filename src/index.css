@@ -1,50 +1,181 @@
-/* Add to your index.css or create a new theme.css file */
+/* index.css - Your GLOBAL Theme and Base Styles */
 
-/* Light theme (default) */
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* GLOBAL CSS Variable Definitions for Light Theme (Default) */
+/* These are the fallback/default values, tied to data-theme attribute */
 [data-theme="light"] {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-  --primary-color: #3b82f6;
-  --secondary-color: #64748b;
-  --bg-secondary: #f8fafc;
+    /* Base Palette Colors (fixed values, remain constant regardless of theme) */
+    --color-dark-blue: #1d2c4d;
+    --color-light-gray: #c7ccd6;
+    --color-off-white: #f6f8fa;
+    --color-accent-orange: #ff9f43;
+    --color-dark-gray: #2d3338; /* A darker gray, useful for dark mode background */
+    --color-darker-gray: #1a1a1a; /* Even darker for very dark elements/borders */
+
+    /* Theme-specific variables - LIGHT THEME DEFAULTS (consolidated from your previous index.css and Layout.css) */
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --primary-color: #3b82f6;
+    --secondary-color: #64748b;
+    --bg-secondary: #f8fafc;
+
+    /* Component-specific colors (Light Theme defaults - consistent with previous suggestions) */
+    --card-bg: #ffffff;
+    --border-color: #e0e0e0;
+    --header-bg: var(--color-light-gray);
+    --header-text: var(--color-dark-blue);
+    --table-stripe-bg: var(--color-off-white);
+    --table-row-bg: #ffffff;
+    --table-hover-bg: #eaf1f8;
+    --select-bg: var(--color-off-white);
+    --select-border: #a0a0a0;
+    --select-text: var(--color-dark-blue);
+    --button-bg: var(--color-accent-orange);
+    --button-text: var(--color-off-white);
+    --link-color: var(--color-dark-blue);
+    --error-bg: #fee2e2;
+    --error-text: #dc2626;
+    --pravas-value-bg: var(--color-light-gray);
+    --pravas-value-text: var(--color-dark-blue);
+
+    /* Navbar Light Theme Variables */
+    --navbar-bg: var(--color-accent-orange);
+    --navbar-text: var(--color-dark-blue);
+    --navbar-shadow: rgba(0,0,0,0.7);
+    --navbar-border: #de8b3b;
+    --theme-toggle-color: #eee;
+    --theme-toggle-hover-bg: rgba(255, 255, 255, 0.2);
+    --logout-border: #eee;
+    --logout-text: #c7ccd6;
+    --logout-hover-bg: #eee;
+    --logout-hover-text: var(--color-dark-blue);
+    --hamburger-color: #eee;
+    --mobile-menu-bg: rgba(30, 30, 30, 0.95);
+    --mobile-menu-border: #444;
+    --mobile-menu-shadow: rgba(0,0,0,0.8);
+    --mobile-menu-text: #c7ccd6;
 }
 
-/* Dark theme */
+/* GLOBAL CSS Variable Definitions for Dark Theme */
+/* These values OVERRIDE the defaults when data-theme="dark" is active */
 [data-theme="dark"] {
-  --bg-color: #0f172a;
-  --text-color: #f8fafc;
-  --primary-color: #60a5fa;
-  --secondary-color: #94a3b8;
-  --bg-secondary: #1e293b;
+    --bg-color: #0f172a; /* From your previous index.css */
+    --text-color: #f8fafc; /* From your previous index.css */
+    --primary-color: #60a5fa; /* From your previous index.css */
+    --secondary-color: #94a3b8; /* From your previous index.css */
+    --bg-secondary: #1e293b; /* From your previous index.css */
+
+    /* Component-specific colors (Dark Theme overrides - consistent with previous suggestions) */
+    --card-bg: var(--color-dark-blue);
+    --border-color: #3b455c;
+    --header-bg: #262c31;
+    --header-text: var(--color-off-white);
+    --table-stripe-bg: var(--color-dark-gray);
+    --table-row-bg: var(--color-dark-blue);
+    --table-hover-bg: #3c444a;
+    --select-bg: var(--color-dark-gray);
+    --select-border: #6d7f9b;
+    --select-text: var(--color-off-white);
+    --button-bg: var(--color-accent-orange);
+    --button-text: var(--color-off-white);
+    --link-color: var(--color-accent-orange);
+    --error-bg: #5a2e2e;
+    --error-text: #ffcccc;
+    --pravas-value-bg: #2c3e50;
+    --pravas-value-text: var(--color-off-white);
+
+    /* Navbar Dark Theme Variables */
+    --navbar-bg: var(--color-accent-orange) !important;
+    --navbar-text: var(--color-off-white);
+    --navbar-shadow: rgba(0,0,0,0.9);
+    --navbar-border: #2f394f;
+    --theme-toggle-color: var(--color-off-white);
+    --theme-toggle-hover-bg: rgba(255, 255, 255, 0.1);
+    --logout-border: var(--color-off-white);
+    --logout-text: var(--color-off-white);
+    --logout-hover-bg: var(--color-off-white);
+    --logout-hover-text: var(--color-dark-blue);
+    --hamburger-color: var(--color-off-white);
+    --mobile-menu-bg: rgba(10, 10, 10, 0.98);
+    --mobile-menu-border: #262c31;
+    --mobile-menu-shadow: rgba(0,0,0,0.95);
+    --mobile-menu-text: var(--color-off-white);
 }
 
-/* Apply theme variables */
+/* Global HTML/Body Reset Styles */
+/* This ensures NO browser default margins/paddings */
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures consistent box model across elements */
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Body Base Styles - Using Theme Variables */
 body {
-  padding-top: 50px;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: var(--bg-color); /* Uses the theme variable from [data-theme] */
+    color: var(--text-color); /* Uses the theme variable from [data-theme] */
+    padding-top: 56px; /* Space for your fixed navbar. Adjust if your navbar height changes. */
 }
 
+/* Global Utility Classes (from your old index.css, !important removed for cleaner cascade) */
 .bg-primary {
-  background-color: var(--primary-color) !important;
+    background-color: var(--primary-color);
 }
 
 .bg-secondary {
-  background-color: var(--bg-secondary) !important;
+    background-color: var(--bg-secondary);
 }
 
 .text-primary {
-  color: var(--primary-color) !important;
+    color: var(--primary-color);
 }
 
-/* Update your existing styles to use CSS variables */
-.app-container.light {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+/* #root styles (from your old app.css) */
+#root {
+    max-width: 1280px;
+    margin: 0 auto; /* Centers the #root element */
+    padding: 0;
+    /* text-align: center; */
 }
 
-.app-container.dark {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+/* Other general app styles (from your old app.css) */
+.logo {
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
 }
+.logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+        animation: logo-spin infinite 20s linear;
+    }
+}
+
+.card {
+    padding: 2em;
+}
+
+.read-the-docs {
+    color: #888;
+}
+/* Removed .app-container.light/dark, as they are replaced by data-theme attributes and variables */
