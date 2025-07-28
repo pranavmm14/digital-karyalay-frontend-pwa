@@ -49,11 +49,15 @@ const PravasChakra = ({ /* No props needed here */ }: PravasChakraProps) => {
         );
         setPravasData(pravasRes.data);
       } catch (err: any) {
-        console.error("Error fetching data:", err);
-        setError(`Failed to load data: ${err.message || "Unknown error"}. Please ensure backend is running and Google Sheet ID/credentials are correct.`);
+        if (err.response && err.response.status === 404) {
+          setError(`The data for ${new Date(selectedYear, selectedMonth).toLocaleString("default", {month: "long",year: "numeric",})} is not available.`);        
+        } else {
+          console.error("Error fetching data:", err);
+          setError(`Failed to load data: ${err.message || "Unknown error"}. Please ensure backend is running and Google Sheet ID/credentials are correct.`);
+        }
       } finally {
         setLoading(false);
-      }
+      } 
     };
 
     fetchData();

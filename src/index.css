@@ -118,7 +118,7 @@ html, body {
 body {
     background-color: var(--bg-color); /* Uses the theme variable from [data-theme] */
     color: var(--text-color); /* Uses the theme variable from [data-theme] */
-    padding-top: 56px; /* Space for your fixed navbar. Adjust if your navbar height changes. */
+    /* padding-top: 56px; Space for your fixed navbar. Adjust if your navbar height changes. */
 }
 
 /* Global Utility Classes (from your old index.css, !important removed for cleaner cascade) */
