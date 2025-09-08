@@ -134,12 +134,10 @@ body {
     color: var(--primary-color);
 }
 
-/* #root styles (from your old app.css) */
+
 #root {
-    max-width: 1280px;
-    margin: 0 auto; /* Centers the #root element */
+    margin: 0;
     padding: 0;
-    /* text-align: center; */
 }
 
 /* Other general app styles (from your old app.css) */

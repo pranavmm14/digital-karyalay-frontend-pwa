@@ -132,10 +132,8 @@ body {
 
 /* #root styles (from your old app.css) */
 #root {
-    max-width: 1280px;
-    margin: 0 auto; /* Center #root on larger screens */
+    margin: 0;
     padding: 0;
-    text-align: center;
 }
 
 /* Remaining global app styles (from your old app.css) */

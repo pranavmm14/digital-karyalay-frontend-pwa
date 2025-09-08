@@ -6,7 +6,8 @@ import MeetingForm from '@/pages/MeetingForm'
 import AttendancePage from '@/pages/AttendancePage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 import Reports from '@/pages/Reports'
-import PravasChakra from '@/pages/PravasChakra' // Make sure this path is correct if it's moved
+import PravasChakra from '@/pages/PravasChakra'
+import Management from '@/pages/Management'
 
 export const AppRoutes = () => {
   const { user, loading } = useAuth()
@@ -34,6 +35,7 @@ export const AppRoutes = () => {
           {/* FIX: Remove the year prop. PravasChakra now manages its own month/year state. */}
           <Route path="/PravasChakra" element={<PravasChakra />} />
           {/* Add more routes as needed */}
+          <Route path='/management' element={<Management />} />
           <Route path="*" element={<NotFoundPage />} />
         </>
       ) : (

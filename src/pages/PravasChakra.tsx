@@ -18,7 +18,7 @@ interface PravasChakraProps {
   // No props needed here as month/year are handled internally
 }
 
-const PravasChakra = ({ /* No props needed here */ }: PravasChakraProps) => {
+const PravasChakra = ({}: PravasChakraProps) => {
   // Get current date to set initial month/year
   const today = new Date();
   const [selectedMonth, setSelectedMonth] = useState<number>(today.getMonth()); // 0-indexed
@@ -76,8 +76,6 @@ const PravasChakra = ({ /* No props needed here */ }: PravasChakraProps) => {
 
   return (
     <div className="pravas-container">
-      {/* REMOVED: Background Shapes and Orbs divs */}
-
       <div className="pravas-card">
         <div className="header-controls">
           <h2 className="pravas-title">

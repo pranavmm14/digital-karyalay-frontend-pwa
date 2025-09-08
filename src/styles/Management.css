@@ -1,0 +1,13 @@
+
+.management-container {
+    /* min-height calculation is here to ensure content takes up remaining viewport space
+       after the navbar. Adjust '56px' if your navbar's height is different. */
+    min-height: calc(100vh - 56px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    width: 100%; /* Ensure it fills available width */
+}

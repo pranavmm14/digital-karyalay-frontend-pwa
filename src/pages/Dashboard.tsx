@@ -1,11 +1,12 @@
 // src/pages/Dashboard.tsx
 import { Link } from "react-router-dom";
+import '@/styles/Dashboard.css';
 
 const Dashboard = () => {
   console.log("Dashboard component is rendering"); // Debug log
 
   return (
-    <div className="p-6 space-y-4 pt-20">
+    <div className="dashboard-container">
       {" "}
       {/* Added pt-20 for fixed navbar */}
       <h1 className="text-2xl font-bold">Digital Karyalay</h1>
