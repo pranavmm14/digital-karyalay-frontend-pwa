@@ -77,7 +77,7 @@ export const ComingSoon = () => {
             {/* calendar right edge is at x ~= 172 (12 + 160). We position cone so about half of it overlaps that edge. */}
             <g transform="translate(0,145) scale(3,-2.7)">
               <path d="M6 0 L18 0 L12 28 Z" fill="#ff9f43" stroke="#e37b2b" strokeWidth="1" />
-              <rect x="8" y="8" width="7" height="5" rx="1" fill="#fff2d2" opacity="0.9" />
+              <rect x="8" y="8" width="8" height="5" rx="1" fill="#fff2d2" opacity="0.9" />
             </g>
           </svg>
         </aside>
