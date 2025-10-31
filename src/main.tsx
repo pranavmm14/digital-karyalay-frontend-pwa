@@ -8,7 +8,8 @@ import './index.css';
 // Register Service Worker for PWA
 import { registerSW } from 'virtual:pwa-register';
 
-const updateSW = registerSW({
+// const _updateSW = 
+registerSW({
   onNeedRefresh() {
     console.log('New content is available; please refresh.');
   },

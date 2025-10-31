@@ -1,0 +1,181 @@
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #ffb347;
+  background-image: linear-gradient(to bottom, #f0f2f5 0%, #ffcd71 100%);
+  animation: bg-gradient-animation 3s ease-out forwards;
+}
+
+.animation-stage {
+  position: relative;
+  width: 400px; /* Adjust stage size */
+  height: 300px; /* Adjust stage size */
+  border-radius: 30px;
+  /* box-shadow: 0 8px 32px rgba(0,0,0,0.08); */
+  /* Ensures all positioned elements are relative to this stage */
+}
+
+/* --- SVG Base Elements (Sun, Horizon, Background Gradient) --- */
+.sun-horizon-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Sun below flag and base, above man */
+}
+
+/* Base Rectangle */
+.chrome-base {
+  transform: translateY(100%); /* Start off-screen bottom */
+  opacity: 0;
+  z-index: 5; /* Base on top of everything except text */
+  animation: base-slide-up 0.5s ease-out forwards;
+}
+
+@keyframes base-slide-up {
+  0% { transform: translateY(20%); opacity: 0.7; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Rising Sun */
+.rising-sun {
+  transform: scaleY(0); /* Start squashed vertically */
+  /* transform-origin: bottom center; */
+  opacity: 0;
+  animation: sun-grow 2s ease-out 0.5s forwards;
+  z-index: 7;
+  transform-origin: 50px 85%; /* Bottom center of the sun path */
+}
+
+@keyframes sun-grow {
+  0% { transform: scaleY(0); opacity: 0; }
+  60% { opacity: 1; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+
+/* Background gradient animation */
+@keyframes bg-gradient-animation {
+  0% {
+    background: linear-gradient(to bottom, #f0f2f5 0%, #fcce7a 100%);
+  }
+  40% {
+    background: linear-gradient(to bottom, #f0f2f5 0%, #fcce7a 80%, #ffd580 100%);
+  }
+  70% {
+    background: linear-gradient(to bottom, #fffab9 0%, #ffd580 60%, #ffb347 100%);
+  }
+  100% {
+    background: linear-gradient(to bottom, #fffab9 0%, #ffd580 40%, #ffb347 100%);
+  }
+}
+
+
+/* --- Flag Animation --- */
+.flag-wrapper {
+  position: absolute;
+  bottom: 60px; /* Adjust to sit on the chrome-base */
+  left: 62%;
+  transform: translateX(-50%) scale(0); /* Start scaled down and centered on base */
+  transform-origin: bottom center; /* Scale from its base */
+  opacity: 0;
+  z-index: 1; /* Flag above sun, below base and text */
+  animation:
+    flag-appear-grow 1.5s ease-out 2.5s forwards, /* Starts after sun is almost stable */
+    flag-wave 2s ease-out 4s infinite; /* Starts waving after growth, infinite */
+}
+
+.rss-flag {
+  width: 150px; /* Adjust flag size as per your SVG's content */
+  height: auto;
+  display: block;
+}
+
+@keyframes flag-appear-grow {
+  0% { transform: translateX(-50%) scale(0); opacity: 0; }
+  50% { transform: translateX(-50%) scale(1.1); opacity: 1; } /* Slightly larger for a bounce effect */
+  100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}
+
+@keyframes flag-wave {
+  0%, 100% { transform: translateX(-50%) rotateZ(0deg) rotateY(0deg); }
+  15% { transform: translateX(-50%) rotateZ(1.2deg) rotateY(6deg); }
+  30% { transform: translateX(-50%) rotateZ(2deg) rotateY(12deg); }
+  50% { transform: translateX(-50%) rotateZ(0.5deg) rotateY(7deg); }
+  70% { transform: translateX(-50%) rotateZ(-1.2deg) rotateY(-6deg); }
+  85% { transform: translateX(-50%) rotateZ(-2deg) rotateY(-12deg); }
+}
+
+
+/* --- Man with Shankh Animation --- */
+.man-shankh-wrapper {
+  position: absolute;
+  bottom: 50px; /* Align with flag and base */
+  left: 45%; /* Start off-screen right */
+  transform: translateX(0) scale(1);
+  opacity: 0;
+  z-index: 1; /* Man below sun, flag, base, and text */
+  animation:
+    man-slide-in 1.2s ease-out 3s forwards; /* Starts after flag stabilizes */
+}
+
+.man-with-shankh {
+  width: 150px; /* Adjust size as needed */
+  height: auto;
+  display: block;
+  /* Make sure the Shankh man faces left as per your description */
+  /* transform: scaleX(-1); Flip horizontally if SVG is facing right */
+}
+
+@keyframes man-slide-in {
+  0% { left: 45%; opacity: 0; }
+  /* 50% { left: 55%; opacity: 1; } Slides to middle of animation-stage */
+  100% { left: 15%; opacity: 1; } /* Slides further left, to final position */
+}
+
+
+/* --- RSS @ 100 Text (Final state, optional subtle animation) --- */
+.centenary-text {
+  position: absolute;
+  bottom: 70px; /* Position over the base, adjust as needed */
+  left: 50%;
+  transform: translateX(-50%) scale(0.5);
+  font-family: 'Arial', sans-serif; /* Use a suitable font */
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  opacity: 0;
+  z-index: 10; /* Text above everything */
+  animation: text-pop-in 0.8s ease-out 4s forwards;
+}
+
+@keyframes text-pop-in {
+  0% { transform: translateX(-50%) scale(0.5); opacity: 0; }
+  70% { transform: translateX(-50%) scale(1.1); opacity: 1; }
+  100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}
+
+/* Final Animation State - Fade out everything when done */
+/* You would typically hide this component after the animation finishes and your app loads */
+/* For testing, you can add an overall fade-out: */
+/*
+.loader-container {
+  animation: overall-fade-out 1s ease-out 8s forwards;
+}
+
+@keyframes overall-fade-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+*/
